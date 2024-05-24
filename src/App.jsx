@@ -1,9 +1,21 @@
-function Hello() {
-     return <h1>Hello world.</h1>;
+import { useState } from "react";
+
+function FavoriteColor() {
+     const [color, setColor] = useState("rouge");
+
+     return (
+          <>
+               <button
+                    type="button"
+                    onClick={() => setColor("blue")}
+               >Blue</button>
+               <h1>Vou couleur préférée est {color}!</h1>
+          </>
+     )
 }
 function App() {
      return (
-          <Hello />
+          <FavoriteColor />
      )
 }
 
