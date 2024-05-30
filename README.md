@@ -487,7 +487,7 @@ function App() {
 
 export default App
 ```
-### Mettre à l'état
+### Mettre à jour l'état
 Pour mettre à jour notre état, nous utilisons notre fonction de mise à jour de l'état.
 
 > Nous ne devrions jamais mettre à jour l'état directement. Par exemple, color = "red" n'est pas autorisé.
@@ -551,3 +551,849 @@ function App() {
 
 export default App
 ```
+Ou, nous pouvons simplement utiliser un seul état et inclure un objet à la place !
+
+```js
+import { useState } from "react";
+
+function Car() {
+  const [car, setCar] = useState({
+    brand: "Ford",
+    model: "Mustang",
+    year: "1964",
+    color: "red"
+  });
+
+  return (
+    <>
+      <h1>My {car.brand}</h1>
+      <p>
+        It is a {car.color} {car.model} from {car.year}.
+      </p>
+    </>
+  )
+}
+function App() {
+     return (
+          <Car />
+     )
+}
+
+export default App
+```
+
+### Mise à jour des objets et des tableaux dans l'état
+
+Lorsque l'état est mis à jour, l'état entier est remplacé.
+
+Que faire si nous voulons seulement mettre à jour la couleur de notre voiture ?
+
+Si nous appelions seulement `setCar({color: "blue"})`, cela supprimerait la marque, le modèle et l'année de notre état.
+
+Nous pouvons utiliser l'opérateur de décomposition (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">spread operator</a>) de JavaScript pour nous aider.
+```js
+import { useState } from "react";
+
+function Car() {
+  const [car, setCar] = useState({
+    brand: "Ford",
+    model: "Mustang",
+    year: "1964",
+    color: "red"
+  });
+
+  const updateColor = () => {
+    setCar(previousState => {
+      return { ...previousState, color: "blue" }
+    });
+  }
+
+  return (
+    <>
+      <h1>My {car.brand}</h1>
+      <p>
+        It is a {car.color} {car.model} from {car.year}.
+      </p>
+      <button
+        type="button"
+        onClick={updateColor}
+      >Blue</button>
+    </>
+  )
+}
+function App() {
+     return (
+          <Car />
+     )
+}
+
+export default App
+```
+
+Comme nous avons besoin de la valeur actuelle de l'état, nous passons une fonction dans notre fonction `setCar`. Cette fonction reçoit la valeur précédente.
+
+Nous retournons ensuite un objet, en utilisant l'opérateur de décomposition pour inclure l'état précédent (`previousState`) et en ne remplaçant que la couleur.
+
+## useEffect
+Le Hook useEffect vous permet d'effectuer des effets secondaires dans vos composants.
+
+Quelques exemples d'effets secondaires sont : récupérer des données, mettre à jour directement le DOM et les minuteries.
+
+Prenons un minuteur comme exemple.
+
+Utilisons `setTimeout()` pour compter 1 seconde après le rendu initial :
+```js
+import { useState, useEffect  } from "react";
+
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+  }), [];
+
+  return <h1>I've rendered {count} times!</h1>;
+}
+
+function App() {
+     return (
+    <>
+      <h1>Timeur</h1>
+      <Timer />
+    </>
+     )
+}
+
+export default App
+```
+
+### Syntaxe du Hook useEffect
+
+```js
+useEffect(<FUNCTION>, <DEPENDECY>)
+```
+- FONCTION : contient le code à exécuter lorsque useEffect se déclenche.
+- DEPENDECY : est un paramètre facultatif, useEffect se déclenche lorsque la dépendance donnée est modifiée.
+
+### Contrôler les effets secondaires dans useEffect
+Ce hook s'exécute à chaque rendu, mais il existe également un moyen d'utiliser un tableau de dépendances pour contrôler l'effet du rendu.
+
+1. Pour exécuter useEffect à chaque rendu, ne passez aucune dépendance.
+```js
+useEffect(()->{
+    // Example Code
+})
+```
+2. Pour exécuter useEffect une seule fois lors du premier rendu, passer un tableau vide comme dépendance.
+
+```js
+useEffect(()->{
+    // Example Code
+}, [] )
+```
+3. Pour exécuter useEffect lorsqu'une valeur particulière change, passez l'état et les props dans le tableau de dépendances.
+```js
+useEffect(()->{
+    // Example Code
+}, [props, state] )
+```
+
+## useRef
+Le Hook useRef permet de conserver des valeurs entre les rendus.
+
+Il peut être utilisé pour stocker une valeur mutable qui ne provoque pas de re-rendu lorsqu'elle est mise à jour.
+
+Il peut être utilisé pour accéder directement à un élément du DOM.
+
+### Ne provoque pas de re-rendus
+Si nous essayions de compter le nombre de fois que notre application se rend en utilisant le Hook useState, nous serions pris dans une boucle infinie puisque ce Hook provoque lui-même un re-rendu.
+
+Pour éviter cela, nous pouvons utiliser le Hook useRef.
+
+
+Utilisez useRef pour suivre les rendus de l'application :
+
+```js
+import { useState, useEffect, useRef } from "react";
+
+function App() {
+     const [inputValue, setInputValue] = useState("");
+     const count = useRef(0);
+
+     return (
+          <>
+               <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+               />
+               <h1>Render Count: {count.current}</h1>
+          </>
+     )
+}
+
+export default App
+```
+`useRef()` ne renvoie qu'un seul élément. Il renvoie un objet appelé `current`.
+
+Lorsque nous initialisons useRef, nous définissons la valeur initiale : `useRef(0)`.
+
+Exécutez ceci sur votre ordinateur et essayez de taper dans l'entrée pour voir le nombre de rendus de l'application augmenter.
+
+### Accéder aux éléments du DOM
+En général, nous voulons laisser React gérer toute la manipulation du DOM.
+
+Mais il y a certains cas où useRef peut être utilisé sans causer de problèmes.
+
+Dans React, nous pouvons ajouter un attribut `ref` à un élément pour y accéder directement dans le DOM.
+
+Utilisez `useRef` pour focaliser l'entrée :
+```js
+import { useRef } from "react";
+
+function App() {
+     const inputElement = useRef()
+
+     const focusInput = () => {
+          inputElement.current.focus();
+     };
+
+     return (
+          <>
+               <input type="text" ref={inputElement} />
+               <button onClick={focusInput}>Focus Input</button>
+          </>
+     )
+}
+
+export default App
+```
+
+## useCallback
+
+Le Hook <a href="https://react.dev/reference/react/useCallback">useCallback</a> de React renvoie une fonction de rappel mémoïsée.
+
+> Pensez à la mémorisation comme à la mise en cache d'une valeur afin qu'elle n'ait pas besoin d'être recalculée.
+
+> Les hooks `useCallback` et `useMemo` sont similaires. La principale différence est que useMemo renvoie une valeur mémorisée et useCallback renvoie une fonction mémorisée.
+
+Cela nous permet d'isoler les fonctions gourmandes en ressources afin qu'elles ne s'exécutent pas automatiquement à chaque rendu.
+
+Le Hook useCallback ne s'exécute que lorsqu'une de ses dépendances est mise à jour.
+
+Cela peut améliorer les performances.
+
+### Problem
+Une raison d'utiliser useCallback est d'empêcher un composant de se rendre à nouveau à moins que ses props aient changé.
+
+Dans cet exemple, vous pourriez penser que le composant `Todos` ne se rendra pas à nouveau à moins que les todos ne changent :
+```js
+// App.js
+import { useState } from "react";
+import Todos from "./Todos";
+
+function App() {
+     const [count, setCount] = useState(0);
+     const [todos, setTodos] = useState([]);
+
+     const increment = () => {
+          setCount((c) => c + 1);
+     };
+     const addTodo = () => {
+          setTodos((t) => [...t, "New Todo"]);
+     };
+
+     return (
+          <>
+               <Todos todos={todos} addTodo={addTodo} />
+               <hr />
+               <div>
+                    Count: {count}
+                    <button onClick={increment}>+</button>
+               </div>
+          </>
+     )
+}
+
+export default App
+```
+
+```js
+// Todos.js
+import { memo } from "react";
+
+const Todos = ({ todos, addTodo }) => {
+  console.log("child render");
+  return (
+    <>
+      <h2>My Todos</h2>
+      {todos.map((todo, index) => {
+        return <p key={index}>{todo}</p>;
+      })}
+      <button onClick={addTodo}>Add Todo</button>
+    </>
+  );
+};
+
+export default memo(Todos);
+```
+
+Essayez d'exécuter ceci et cliquez sur le bouton d'incrémentation du compteur.
+
+Vous remarquerez que le composant `Todos` se rend à nouveau même lorsque les `todos` ne changent pas.
+
+Pourquoi cela ne fonctionne-t-il pas ? Nous utilisons <a href="https://react.dev/reference/react/memo">memo</a>, donc le composant `Todos` ne devrait pas se rendre à nouveau puisque ni l'état des `todos` ni la fonction `addTodo` ne changent lorsque le compteur est incrémenté.
+
+Cela est dû à quelque chose appelé "égalité référentielle".
+
+À chaque fois qu'un composant se rend à nouveau, ses fonctions sont recréées. En raison de cela, la fonction `addTodo` a effectivement changé.
+
+### Solution
+Pour résoudre ce problème, nous pouvons utiliser le hook `useCallback` pour éviter que la fonction ne soit recréée inutilement.
+
+Utilisez le hook `useCallback` pour empêcher le composant Todos de se rendre inutilement à nouveau :
+
+```js
+// App.js
+import { useState } from "react";
+import Todos from "./Todos";
+
+function App() {
+     const [count, setCount] = useState(0);
+     const [todos, setTodos] = useState([]);
+
+     const increment = () => {
+          setCount((c) => c + 1);
+     };
+     const addTodo = useCallback(() => {
+          setTodos((t) => [...t, "New Todo"]);
+     }, [todos]);
+
+     return (
+          <>
+               <Todos todos={todos} addTodo={addTodo} />
+               <hr />
+               <div>
+                    Count: {count}
+                    <button onClick={increment}>+</button>
+               </div>
+          </>
+     )
+}
+
+export default App
+```
+
+Maintenant, le composant `Todos` se rendra uniquement lorsque la prop `todos` changera.
+
+## useMemo
+
+Le Hook <a href="https://react.dev/reference/react/useMemo">useMemo</a> de React renvoie une valeur mémorisée.
+
+> Pensez à la mémorisation comme à la mise en cache d'une valeur afin qu'elle n'ait pas besoin d'être recalculée.
+
+Le Hook useMemo ne s'exécute que lorsque l'une de ses dépendances est mise à jour.
+
+Cela peut améliorer les performances.
+
+> Les hooks `useMemo` et `useCallback` sont similaires. La principale différence est que useMemo renvoie une valeur mémorisée et useCallback renvoie une fonction mémorisée.
+
+### Performance
+Le Hook useMemo peut être utilisé pour éviter l'exécution inutile de fonctions coûteuses en ressources.
+
+Dans cet exemple, nous avons une fonction coûteuse qui s'exécute à chaque rendu.
+
+En changeant le compteur ou en ajoutant une tâche, vous remarquerez un retard dans l'exécution.
+
+Une fonction peu performante. La fonction expensiveCalculation s'exécute à chaque rendu :
+
+```js
+import { useState } from "react";
+
+const App = () => {
+     const [count, setCount] = useState(0);
+     const [todos, setTodos] = useState([]);
+     const calculation = expensiveCalculation(count);
+
+     const increment = () => {
+          setCount((c) => c + 1);
+     };
+     const addTodo = () => {
+          setTodos((t) => [...t, "New Todo"]);
+     };
+
+     return (
+          <div>
+               <div>
+                    <h2>My Todos</h2>
+                    {todos.map((todo, index) => {
+                         return <p key={index}>{todo}</p>;
+                    })}
+                    <button onClick={addTodo}>Add Todo</button>
+               </div>
+               <hr />
+               <div>
+                    Count: {count}
+                    <button onClick={increment}>+</button>
+                    <h2>Expensive Calculation</h2>
+                    {calculation}
+               </div>
+          </div>
+     );
+};
+
+const expensiveCalculation = (num) => {
+     console.log("Calculating...");
+     for (let i = 0; i < 1000000000; i++) {
+          num += 1;
+     }
+     return num;
+};
+
+export default App
+```
+### Utilisattion de useMemo
+
+Pour résoudre ce problème de performance, nous pouvons utiliser le Hook `useMemo` pour mémoriser la fonction `expensiveCalculation`. Cela fera en sorte que la fonction ne s'exécute que lorsque cela est nécessaire.
+
+Nous pouvons envelopper l'appel de la fonction coûteuse avec `useMemo`.
+
+Le Hook `useMemo` accepte un deuxième paramètre pour déclarer les dépendances. La fonction coûteuse ne s'exécutera que lorsque ses dépendances auront changé.
+
+Dans l'exemple suivant, la fonction coûteuse ne s'exécutera que lorsque `count` sera modifié et non lorsque des todos sont ajoutés.
+
+Exemple de performance utilisant le Hook useMemo :
+
+```js
+import { useState, useMemo } from "react";
+const App = () => {
+     const [count, setCount] = useState(0);
+     const [todos, setTodos] = useState([]);
+     const calculation = useMemo(() => expensiveCalculation(count), [count]);
+
+     const increment = () => {
+          setCount((c) => c + 1);
+     };
+     const addTodo = () => {
+          setTodos((t) => [...t, "New Todo"]);
+     };
+
+     return (
+          <div>
+               <div>
+                    <h2>My Todos</h2>
+                    {todos.map((todo, index) => {
+                         return <p key={index}>{todo}</p>;
+                    })}
+                    <button onClick={addTodo}>Add Todo</button>
+               </div>
+               <hr />
+               <div>
+                    Count: {count}
+                    <button onClick={increment}>+</button>
+                    <h2>Expensive Calculation</h2>
+                    {calculation}
+               </div>
+          </div>
+     );
+};
+
+const expensiveCalculation = (num) => {
+     console.log("Calculating...");
+     for (let i = 0; i < 1000000000; i++) {
+          num += 1;
+     }
+     return num;
+};
+
+export default App
+```
+
+## Les hooks personnalisés
+
+Les hooks sont des fonctions réutilisables.
+
+Lorsque vous avez une logique de composant qui doit être utilisée par plusieurs composants, nous pouvons extraire cette logique vers un hook personnalisé.
+
+Les hooks personnalisés commencent par "use". Par exemple : `useFetch`.
+
+### Créer un hook 
+Dans le code suivant, nous récupérons des données dans notre composant Accueil et les affichons.
+
+Nous utiliserons le service <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a> pour récupérer des données fictives. Ce service est idéal pour tester les applications lorsqu'il n'existe pas de données réelles.
+
+Pour en savoir plus, consultez la section sur l'API Fetch en JavaScript.
+
+Utilisez le service <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a> pour récupérer des "todo" fictifs et afficher les titres sur la page.
+
+```js
+import { useState, useEffect } from "react"
+
+const App = () => {
+     const [data, setData] = useState(null);
+
+     useEffect(() => {
+          (async () => {
+               const res = await fetch("https://jsonplaceholder.typicode.com/todos")
+               const resData = await res.json()
+               setData(resData)
+          })()
+     }, []);
+
+     return (
+          <>
+               {data &&
+                    data.map((item) => {
+                         return <p key={item.id}>{item.title}</p>;
+                    })}
+          </>
+     );
+};
+
+export default App
+```
+
+La logique de récupération (`fetch`) peut également être nécessaire dans d'autres composants, nous allons donc l'extraire dans un Hook personnalisé.
+
+Déplacez la logique de récupération (fetch) dans un nouveau fichier pour l'utiliser en tant que Hook personnalisé.
+
+```js
+// hooks/useFetch.js
+import { useState, useEffect } from "react";
+
+const useFetch = (url) => {
+     const [data, setData] = useState(null);
+
+     useEffect(() => {
+          (async () => {
+               const res = await fetch("https://jsonplaceholder.typicode.com/todos")
+               const resData = await res.json()
+               setData(resData)
+          })()
+     }, [url]);
+
+     return [data];
+};
+
+export default useFetch;
+```
+
+```js
+// App.js
+import { useState, useEffect } from "react"
+import useFetch from "./hooks/useFetch";
+
+const App = () => {
+     const [data] = useFetch("https://jsonplaceholder.typicode.com/todos");
+
+     return (
+          <>
+               {data &&
+                    data.map((item) => {
+                         return <p key={item.id}>{item.title}</p>;
+                    })}
+          </>
+     );
+};
+
+export default App
+```
+
+### Explication de l'exemple
+Nous avons créé un nouveau fichier appelé `useFetch.js `contenant une fonction appelée `useFetch` qui contient toute la logique nécessaire pour récupérer nos données.
+
+Nous avons supprimé l'URL codée en dur et l'avons remplacée par une variable url qui peut être passée au Hook personnalisé.
+
+Enfin, nous retournons nos données à partir de notre Hook.
+
+Dans `App.js`, nous importons notre Hook `useFetch` et l'utilisons comme n'importe quel autre Hook. C'est là que nous passons l'URL pour récupérer des données.
+
+Maintenant, nous pouvons réutiliser ce Hook personnalisé dans n'importe quel composant pour récupérer des données à partir de n'importe quelle URL.
+
+# Les formulaires
+Tout comme en HTML, React utilise des formulaires pour permettre aux utilisateurs d'interagir avec la page web.
+### Ajout de formulaires en React
+
+Vous ajoutez un formulaire avec React comme tout autre élément
+
+Ajoutez un formulaire permettant aux utilisateurs de saisir leur nom :
+
+```js
+function MyForm() {
+     return (
+          <form>
+               <label>Enter your name:
+                    <input type="text" />
+               </label>
+          </form>
+     )
+}
+const App = () => {
+
+     return (
+          <>
+          <MyForm />
+          </>
+     );
+};
+
+export default App
+```
+
+Cela fonctionnera normalement, le formulaire se soumettra et la page se rafraîchira.
+
+Mais généralement, ce n'est pas ce que nous voulons se produire en React.
+
+Nous voulons empêcher ce comportement par défaut et laisser React contrôler le formulaire
+
+### Traitement des formulaires
+Gérer les formulaires consiste à gérer les données lorsqu'elles changent de valeur ou lorsqu'elles sont soumises.
+
+En HTML, les données du formulaire sont généralement gérées par le DOM.
+
+En React, les données du formulaire sont généralement gérées par les composants.
+
+Lorsque les données sont gérées par les composants, toutes les données sont stockées dans l'état du composant.
+
+Vous pouvez contrôler les changements en ajoutant des gestionnaires d'événements dans l'attribut `onChange`.
+
+Nous pouvons utiliser le Hook `useState` pour suivre la valeur de chaque entrée et fournir une "source unique de vérité" pour l'ensemble de l'application.
+
+Utiliser le Hook useState pour gérer l'entrée :
+
+```js
+// App.js
+import { useState } from 'react';
+
+function MyForm() {
+     const [name, setName] = useState("");
+
+     return (
+          <form>
+               <label>Enter your name:
+                    <input
+                         type="text"
+                         value={name}
+                         onChange={(e) => setName(e.target.value)}
+                    />
+               </label>
+          </form>
+     )
+}
+const App = () => {
+
+     return (
+          <>
+               <MyForm />
+          </>
+     );
+};
+
+export default App
+```
+
+### Soumission de formulaires
+Vous pouvez contrôler l'action de soumission en ajoutant un gestionnaire d'événements dans l'attribut `onSubmit` pour le `<form> `
+
+Ajoutez un bouton de soumission et un gestionnaire d'événements dans l'attribut onSubmit :
+
+```js
+// App.js
+import { useState } from 'react';
+
+function MyForm() {
+     const [name, setName] = useState("");
+
+     const handleSubmit = (event) => {
+          event.preventDefault();
+          alert(`The name you entered was: ${name}`)
+     }
+     return (
+          <form onSubmit={handleSubmit}>
+               <label>Enter your name:
+                    <input
+                         type="text"
+                         value={name}
+                         onChange={(e) => setName(e.target.value)}
+                    />
+               </label>
+          </form>
+     )
+}
+const App = () => {
+
+     return (
+          <>
+               <MyForm />
+          </>
+     );
+};
+
+export default App
+```
+
+### Champs de saisie multiples
+
+Vous pouvez contrôler les valeurs de plus d'un champ de saisie en ajoutant un attribut `name` à chaque élément.
+
+Nous initialiserons notre état avec un objet vide.
+
+Pour accéder aux champs dans le gestionnaire d'événements, utilisez la syntaxe `event.target.name` et `event.target.value`.
+
+Pour mettre à jour l'état, utilisez des crochets [notation entre crochets] autour du nom de la propriété.
+
+Exemple :
+Écrivez un formulaire avec deux champs de saisie :
+
+```js
+// App.js
+import { useState } from 'react';
+
+function MyForm() {
+     const [inputs, setInputs] = useState({});
+
+     const handleChange = (event) => {
+          const name = event.target.name;
+          const value = event.target.value;
+          setInputs(values => ({ ...values, [name]: value }))
+     }
+
+     const handleSubmit = (event) => {
+          event.preventDefault();
+          alert(inputs);
+     }
+     return (
+          <form onSubmit={handleSubmit}>
+               <label>Enter your name:
+                    <input
+                         type="text"
+                         name="username"
+                         value={inputs.username || ""}
+                         onChange={handleChange}
+                    />
+               </label>
+               <label>Enter your age:
+                    <input
+                         type="number"
+                         name="age"
+                         value={inputs.age || ""}
+                         onChange={handleChange}
+                    />
+               </label>
+               <input type="submit" />
+          </form>
+     )
+}
+const App = () => {
+
+     return (
+          <>
+               <MyForm />
+          </>
+     );
+};
+
+export default App
+```
+
+> ous utilisons la même fonction de gestionnaire d'événements pour les deux champs de saisie. Nous pourrions écrire un gestionnaire d'événements pour chacun, mais cela donne un code beaucoup plus propre et est la manière préférée en React.
+
+### Textarea
+L'élément textarea en React est légèrement différent de l'HTML ordinaire.
+
+En HTML, la valeur d'un textarea était le texte entre la balise de début `<textarea>` et la balise de fin `</textarea>`.
+
+```html
+<textarea>
+  Content of the textarea.
+</textarea>
+```
+
+En React, la valeur d'un textarea est placée dans un attribut value. Nous utiliserons le Hook useState pour gérer la valeur du textarea :
+
+Exemple : Un simple textarea avec du contenu :
+
+```js
+// App.js
+import { useState } from 'react';
+
+function MyForm() {
+     const [textarea, setTextarea] = useState(
+          "The content of a textarea goes in the value attribute"
+     );
+
+     const handleChange = (event) => {
+          setTextarea(event.target.value)
+     }
+
+     return (
+          <form>
+               <textarea value={textarea} onChange={handleChange} />
+          </form>
+     )
+}
+const App = () => {
+
+     return (
+          <>
+               <MyForm />
+          </>
+     );
+};
+
+export default App
+```
+
+### Select
+Dans React, une liste déroulante, ou une boîte de sélection, est également un peu différente de l'HTML.
+
+En HTML, la valeur sélectionnée dans la liste déroulante était définie avec l'attribut `selected` :
+
+```html
+<select>
+  <option value="Ford">Ford</option>
+  <option value="Volvo" selected>Volvo</option>
+  <option value="Fiat">Fiat</option>
+</select>
+```
+
+En React, la valeur sélectionnée est définie avec un attribut value sur la balise select :
+
+Exemple : Une simple boîte de sélection, où la valeur sélectionnée "Volvo" est initialisée dans le constructeur :
+
+```js
+// App.js
+import { useState } from 'react';
+
+function MyForm() {
+     const [myCar, setMyCar] = useState("Volvo");
+
+     const handleChange = (event) => {
+          setMyCar(event.target.value)
+     }
+
+     return (
+          <form>
+               <select value={myCar} onChange={handleChange}>
+                    <option value="Ford">Ford</option>
+                    <option value="Volvo">Volvo</option>
+                    <option value="Fiat">Fiat</option>
+               </select>
+          </form>
+     )
+}
+const App = () => {
+
+     return (
+          <>
+               <MyForm />
+          </>
+     );
+};
+
+export default App
+```
+
+En apportant ces légères modifications à `<textarea>` et `<select>`, React est capable de gérer tous les éléments de saisie de la même manière.
