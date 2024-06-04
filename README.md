@@ -31,13 +31,13 @@ Pour tirer pleinement profit de cette formation, veuillez vous assurer de dispos
 - Avoir une connaissance solide en Javascript (avoir déjà vu les conditions, variable et boucles...)
 - Comprenez le concept d'asynchronisme en JavaScript (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">Voir plus</a>)
 - Familiarité avec l'utilisation du terminal.
-- Une connnaissace solide en HTML5 et CSS3
+- Une connaissace solide en HTML5 et CSS3
 - Savoir utiliser un éditeur de code (on utilisera ici Visual Studio Code)
 
-## <a name="deroulement"></a> Déroulement de la formation
+# <a name="deroulement"></a> Déroulement de la formation
 La formation sera divisée en plusieurs sections. La première partie abordera les fondamentaux de la technologie React. Dans la deuxième partie, nous dresserons la liste des meilleures bibliothèques à utiliser pour développer une application performante et sécurisée. Enfin, nous conclurons par un exemple pratique visant à mettre en application les connaissances acquises.
 
-# <a name="environement"></a> Préparation d'un environnement
+## <a name="environement"></a> Préparation d'un environnement
 Pour créer un nouveau projet avec React:
 - Assurez-vous d'avoir Node.js installé sur votre machine. Vous pouvez télécharger la dernière version depuis le site officiel de Node.js : https://nodejs.org/.
 - npm (Node Package Manager) est généralement inclus avec l'installation de Node.js.
@@ -55,8 +55,8 @@ npm -v
 
 Si Node.js et npm sont installés, les commandes ci-dessus afficheront les versions correspondantes. Si Node.js oui npm ne sont pas installés, vous obtiendrez généralement un message indiquant que la commande n'est pas reconnue.
 
-# <a name="environement"></a> Création d'un nouveau projet
-Pour créer un nouveau projet React, vous pouvez utiliser <a href="https://create-react-app.dev/">Create React App</a>, qui est un outil officiel de Facebook pour générer rapidement un projet React configuré avec les outils et les configurations nécessaires. Dans cette formation, nous avons choisi d'utiliser <a href="https://vitejs.dev/">ViteJS</a> en raison de sa compilation ultra-rapide par rapport a Create React App.
+## <a name="environement"></a> Création d'un nouveau projet
+Pour créer un nouveau projet React, vous pouvez utiliser <a href="https://create-react-app.dev/">Create React App</a>, qui est un outil officiel de Facebook pour générer rapidement un projet React configuré avec les outils et les configurations nécessaires. Dans cette formation, nous avons choisi d'utiliser <a href="https://vitejs.dev/">ViteJS</a> en raison de sa compilation ultra-rapide par rapport à Create React App.
 
 Pour créer un nouveau projet avec Vite, veuillez ouvrir votre terminal et naviguer jusqu'à l'emplacement où vous souhaitez placer votre projet. Ensuite, exécutez la commande suivante :
 ```
@@ -87,7 +87,7 @@ Après avoir lancé la troisième commande, votre application démarrera sur le 
 
 ![Init new project](https://i.ibb.co/smWbv3p/Screenshot-2024-04-23-142746.png)
 
-# <a name="structure"></a> Structure
+## <a name="structure"></a> Structure
 Par défaut, Vite crée un projet React avec une structure minimale. Cependant, au cours de cette formation, nous allons améliorer cette structure en ajoutant d'autres sous-dossiers à l'intérieur du dossier "src". Voici à quoi ressemble la structure du projet :
 <pre>
 - node_modules/
@@ -321,7 +321,7 @@ Lorsque vous utilisez une expression JavaScript comme valeur d'attribut, les gui
 ```
 
 React DOM utilise la convention de nommage des propriétés camelCase au lieu des noms d'attributs HTML.
-Par exemple, `tab-index` devient tabIndex en JSX mais il y a une  parcticularité avec l'attribute `class`:
+Par exemple, `tab-index` devient `tabIndex` en JSX mais il y a une  parcticularité avec l'attribute `class`:
 
 L'attribut `class` est un attribut largement utilisé en HTML, mais comme JSX est rendu en tant que JavaScript, et que le mot-clé `class` est un mot réservé en JavaScript, vous n'êtes pas autorisé à l'utiliser dans JSX.
 JSX a résolu ce problème en utilisant `className` à la place. Lorsque JSX est rendu, il traduit les attributs className en attributs class.
@@ -388,7 +388,9 @@ const listItems = arr.map((val, index) =>
 );
 ```
 > Les clés sont importantes car elles identifient de manière unique les éléments, aidant React à comprendre quels éléments ont changé, ont été ajoutés ou ont été supprimés.
+
 # Les événements
+
 ## Introduction
 Gérer les événements en React est très similaire à gérer les événements dans le DOM.
 
@@ -431,9 +433,12 @@ function App() {
 
 export default App
 ```
+
 # Les hooks
+
 ## C'est quoi un hook ?
 Les hooks permettent aux composants fonctionnels d'avoir accès à l'état et à d'autres fonctionnalités de React. En raison de cela, les composants de classe ne sont généralement plus nécessaires.
+
 ## useState
 Le hook <a href="https://react.dev/reference/react/useState">useState</a> nous permet de suivre l'état dans un composant fonctionnel.
 
@@ -467,6 +472,7 @@ La deuxième valeur, `setColor`, est la fonction qui est utilisée pour mettre �
 Ces noms sont des variables qui peuvent être nommées comme vous le souhaitez. mais il y a une convention qui consiste à écrire la premiere valeur en miniscule et la deuxieme valeur en camelCase en commencant par `set` suivis du nom de la première variable
 
 Enfin, nous définissons l'état initial sur une chaîne vide : `useState("")`
+
 ### Lire l'état
 Nous pouvons maintenant inclure notre état n'importe où dans notre composant.
 
@@ -635,7 +641,7 @@ Comme nous avons besoin de la valeur actuelle de l'état, nous passons une fonct
 Nous retournons ensuite un objet, en utilisant l'opérateur de décomposition pour inclure l'état précédent (`previousState`) et en ne remplaçant que la couleur.
 
 ## useEffect
-Le Hook useEffect vous permet d'effectuer des effets secondaires dans vos composants.
+Le Hook <a href="https://react.dev/reference/react/useEffect">useEffect</a> vous permet d'effectuer des effets secondaires dans vos composants.
 
 Quelques exemples d'effets secondaires sont : récupérer des données, mettre à jour directement le DOM et les minuteries.
 
@@ -701,7 +707,7 @@ useEffect(()->{
 ```
 
 ## useRef
-Le Hook useRef permet de conserver des valeurs entre les rendus.
+Le Hook <a href="https://react.dev/reference/react/useRef">useRef</a> permet de conserver des valeurs entre les rendus.
 
 Il peut être utilisé pour stocker une valeur mutable qui ne provoque pas de re-rendu lorsqu'elle est mise à jour.
 
@@ -785,7 +791,7 @@ Le Hook useCallback ne s'exécute que lorsqu'une de ses dépendances est mise à
 
 Cela peut améliorer les performances.
 
-### Problem
+### Problème
 Une raison d'utiliser useCallback est d'empêcher un composant de se rendre à nouveau à moins que ses props aient changé.
 
 Dans cet exemple, vous pourriez penser que le composant `Todos` ne se rendra pas à nouveau à moins que les todos ne changent :
@@ -1114,7 +1120,8 @@ Maintenant, nous pouvons réutiliser ce Hook personnalisé dans n'importe quel c
 
 # Les formulaires
 Tout comme en HTML, React utilise des formulaires pour permettre aux utilisateurs d'interagir avec la page web.
-### Ajout de formulaires en React
+
+## Ajout de formulaires en React
 
 Vous ajoutez un formulaire avec React comme tout autre élément
 
@@ -1148,7 +1155,7 @@ Mais généralement, ce n'est pas ce que nous voulons se produire en React.
 
 Nous voulons empêcher ce comportement par défaut et laisser React contrôler le formulaire
 
-### Traitement des formulaires
+## Traitement des formulaires
 Gérer les formulaires consiste à gérer les données lorsqu'elles changent de valeur ou lorsqu'elles sont soumises.
 
 En HTML, les données du formulaire sont généralement gérées par le DOM.
@@ -1194,7 +1201,7 @@ const App = () => {
 export default App
 ```
 
-### Soumission de formulaires
+## Soumission de formulaires
 Vous pouvez contrôler l'action de soumission en ajoutant un gestionnaire d'événements dans l'attribut `onSubmit` pour le `<form> `
 
 Ajoutez un bouton de soumission et un gestionnaire d'événements dans l'attribut onSubmit :
@@ -1234,7 +1241,7 @@ const App = () => {
 export default App
 ```
 
-### Champs de saisie multiples
+## Champs de saisie multiples
 
 Vous pouvez contrôler les valeurs de plus d'un champ de saisie en ajoutant un attribut `name` à chaque élément.
 
@@ -1298,9 +1305,9 @@ const App = () => {
 export default App
 ```
 
-> ous utilisons la même fonction de gestionnaire d'événements pour les deux champs de saisie. Nous pourrions écrire un gestionnaire d'événements pour chacun, mais cela donne un code beaucoup plus propre et est la manière préférée en React.
+> Nous utilisons la même fonction de gestionnaire d'événements pour les deux champs de saisie. Nous pourrions écrire un gestionnaire d'événements pour chacun, mais cela donne un code beaucoup plus propre et est la manière préférée en React.
 
-### Textarea
+## Textarea
 L'élément textarea en React est légèrement différent de l'HTML ordinaire.
 
 En HTML, la valeur d'un textarea était le texte entre la balise de début `<textarea>` et la balise de fin `</textarea>`.
@@ -1311,7 +1318,7 @@ En HTML, la valeur d'un textarea était le texte entre la balise de début `<tex
 </textarea>
 ```
 
-En React, la valeur d'un textarea est placée dans un attribut value. Nous utiliserons le Hook useState pour gérer la valeur du textarea :
+En React, la valeur d'un textarea est placée dans un attribut `value`. Nous utiliserons le Hook useState pour gérer la valeur du textarea :
 
 Exemple : Un simple textarea avec du contenu :
 
@@ -1346,7 +1353,7 @@ const App = () => {
 export default App
 ```
 
-### Select
+## Select
 Dans React, une liste déroulante, ou une boîte de sélection, est également un peu différente de l'HTML.
 
 En HTML, la valeur sélectionnée dans la liste déroulante était définie avec l'attribut `selected` :
@@ -1359,7 +1366,7 @@ En HTML, la valeur sélectionnée dans la liste déroulante était définie avec
 </select>
 ```
 
-En React, la valeur sélectionnée est définie avec un attribut value sur la balise select :
+En React, la valeur sélectionnée est définie avec un attribut `value` sur la balise select :
 
 Exemple : Une simple boîte de sélection, où la valeur sélectionnée "Volvo" est initialisée dans le constructeur :
 
@@ -1397,3 +1404,1306 @@ export default App
 ```
 
 En apportant ces légères modifications à `<textarea>` et `<select>`, React est capable de gérer tous les éléments de saisie de la même manière.
+
+## useForm
+
+Pour la suite de cette formation sur les formulaires, nous allons créer un hook personnalisé `useForm` qui nous servira pour la gestion des formulaires.
+
+Créez un fichier `useForm.js` dans le dossier `hooks` et insérez-y le code suivant :
+```js
+// src/hooks/useForm.js
+import { useState } from "react"
+
+/**
+ * le hook pour controler les formulaires
+ * @param {Object} initials les donnes par défault
+ * @returns {Array} un tableau contenant les [nouveaux donnees, le handleChange, le setValeur des donnés]
+ */
+export const useForm = (initials) => {
+  const [data, setData] = useState(initials)
+
+  const handleChange = (e) => {
+    if (e) {
+      e.preventDefault()
+    }
+    const inputTypes = ['text', 'email', 'password']
+    const inputType = e.target.type
+    const name = e.target.name
+    const value = e.target.value
+    const localName = e.target.localName
+
+    const handleInputChange = () => {
+      setData(d => ({ ...d, [name]: value }))
+    }
+    if (inputTypes.includes(inputType) || localName === 'textarea') {
+      handleInputChange()
+    } else if (localName === 'select') {
+      const selectedOptions = Array.from(e.target.selectedOptions, option => option.value)
+      setData(fd => ({ ...fd, [name]: selectedOptions }))
+    } else if (inputType === 'file') {
+      const file = e.target.files[0]
+      setData(fd => ({ ...fd, [name]: file }))
+    }
+  }
+  const setValue = (name, value) => {
+    setData(d => ({ ...d, [name]: value }))
+  }
+  return [data, handleChange, setData, setValue]
+}
+```
+Ce hook crée un objet contenant toutes les clés des champs définis dans un formulaire et utilise la valeur de l'attribut `name` pour la gestion et la synchronisation avec l'état.
+
+Ce hook exporte 4 paramètres :
+
+1. `data` : Contient les valeurs des champs.
+2. `handleChange` : Utilisé pour la gestion des champs.
+3. `setData` : Sert à mettre à jour les données du formulaire.
+4. `setValue` : Permet de mettre à jour individuellement la valeur de chaque champ.
+
+Exemple d'utilisation :
+```js
+// App.js
+import { useForm } from './hooks/useForm';
+
+function MyForm() {
+     const [data, handleChange, setData, setValue] = useForm({
+          nom: "",
+          prenom: ""
+     })
+
+     const handleSubmit = (e) => {
+          e.preventDefault()
+          alert("Formulaire soumis")
+     }
+
+     return (
+          <form onSubmit={handleSubmit}>
+                    <input name='nom' value={data.nom} onChange={handleChange} />
+                    <input name='prenom' value={data.prenom} onChange={handleChange} />
+                    <button>Envoyer</button>
+          </form>
+     )
+}
+const App = () => {
+
+     return (
+          <>
+               <MyForm />
+          </>
+     );
+};
+
+export default App
+```
+
+> Ce hook utilise la valeur de l'attribut `name` comme référence du champ. Il est donc essentiel que la valeur présente dans cet attribut soit la même que le nom de la clé définie dans l'objet des valeurs initiales du formulaire dans le hook `useForm`.
+
+# Validation des données
+La validation des données est une étape importante dans le développement d'applications, car elle permet de garantir que les données entrantes sont conformes aux attentes et aux règles définies. En Node.js, plusieurs bibliothèques peuvent être utilisées pour la validation des données. L'une des bibliothèques les plus populaires est <a href="https://www.npmjs.com/package/yup">Yup</a>.
+
+## Validation.js
+Pour la suite de cette formation, nous n'utiliserons pas "Yup". Nous disposons d'une classe appelée "Validation" que nous utiliserons pour valider les données. L'avantage de cette classe est sa simplicité et sa facilité d'utilisation, avec la possibilité d'ajouter des validations personnalisées.
+
+Pour l'utiliser, il suffit de créer une nouvelle classe (fichier) appelée `Validation.js` à l'intérieur du dossier `class`, situé dans le dossier `src` du projet, et d'y insérer le code suivant :
+
+```js
+import moment from "moment"
+
+export default class Validation {
+  constructor(data, validation, customMessages, customValidations) {
+    this.data = data
+    this.validation = validation
+    this.customMessages = customMessages
+    this.errors = {}
+    this.customValidations = customValidations
+  }
+
+  isValidate() {
+    return Object.keys(this.getErrors()).length === 0 && this.getErrors().constructor === Object
+  }
+
+  setError(key, message) {
+    const errors = this.errors[key] ? [...this.errors[key], message] : [message]
+    this.errors = { ...this.errors, [key]: errors }
+  }
+
+  getError(key) {
+    this.run()
+    return this.errors[key]
+  }
+
+  required(key, intitialValue) {
+    if (!this.validation[key] || !this.validation[key].required) return false
+    const value = typeof (intitialValue) == 'string' ? intitialValue ? intitialValue.trim() : '' : intitialValue
+    let isInvalid = false
+    if (typeof (value) == 'string' || Array.isArray(value)) {
+      if (!value || value === '' || value.length === 0) {
+        isInvalid = true
+      }
+    } else if (typeof (value) == 'object' && !Array.isArray(value)) {
+      if (!value) {
+        isInvalid = true
+      }
+    } else if (!value) {
+      isInvalid = true
+    }
+    if (isInvalid) {
+      this.setError(key, this.customMessages?.[key]?.required || `Ce champ est obligatoire`)
+    }
+  }
+
+  length(key, intitialValue, params) {
+    const value = typeof (intitialValue) == 'string' ? intitialValue ? intitialValue.trim() : '' : ""
+    const trimedValue = value.trim()
+    if (!trimedValue) return
+    const [min, max] = params
+    if (min && !max && trimedValue.length < min) {
+      this.setError(key, this.customMessages?.[key]?.length || `Saisissez au moins ${min} caractères`)
+    } else if (!min && max && trimedValue.length > max) {
+      this.setError(key, this.customMessages?.[key]?.length || `Vous ne pouvez pas dépasser ${max} caractères`)
+    } else if ((min && max) && (trimedValue.length < min || trimedValue.length > max)) {
+      this.setError(key, this.customMessages?.[key]?.length || `La valeur de ce champ doit être comprise entre ${min} et ${max}`)
+    }
+  }
+  match(key, value, params) {
+    if (!value) return
+    if (this.data[params] !== value) {
+      this.setError(key, this.customMessages?.[key]?.match || `La valeur ne correspond pas à la valeur ${params}`)
+    }
+  }
+  username(key, value) {
+    if (!value) return
+    const validUsername = /^[a-zA-Z0-9._]+$/.test(value)
+    if (!validUsername || value.length < 2) {
+      this.setError(key, this.customMessages?.[key]?.username || "Nom d'utilisateur incorrect (lettres, chiffres, point ou trait de soulignement)")
+    }
+  }
+  email(key, value) {
+    if (!value) return
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+    if (!validEmail) {
+      this.setError(key, this.customMessages?.[key]?.email || 'Adresse Email incorrecte')
+    }
+  }
+  number(key, value) {
+    if (!value) return
+    let isnum = /^\d+$/.test(value);
+    if (!isnum) {
+      this.setError(key, this.customMessages?.[key]?.number || `Ce champ doit être un numéro valide`)
+    }
+  }
+  integer(key, value) {
+    if (!value) return
+    let isnum = isNaN(value)
+    if (isnum) {
+      this.setError(key, this.customMessages?.[key]?.integer || `This field must be a valid integer`)
+    }
+  }
+  date(key, value, params) {
+    if (!value) return
+    const format = params
+    let isDate = moment(value, format).isValid()
+    if (!isDate) {
+      this.setError(key, this.customMessages?.[key]?.date || `This field must be a valid date(${format})`)
+    }
+  }
+  string(key, value) {
+    if (!value) return
+    const pattern = /^[a-zA-Z0-9!@#%^&*()_+, ]+$/
+    let isString = pattern.test(value);
+    if (!isString) {
+      this.setError(key, this.customMessages?.[key]?.string || `Ce champ doit être une chaîne valide`)
+    }
+  }
+  alpha(key, value) {
+    if (!value) return
+    const pattern = /^[\w\s!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~\u00C0-\u017F]+$/u
+    let isString = pattern.test(value);
+    if (!isString) {
+      this.setError(key, this.customMessages?.[key]?.alpha || `Ce champ doit contenir uniquement des caractères alphanumériques`)
+    }
+  }
+
+  image(key, value, params) {
+    if (!value) return
+    const IMAGES_MIMES = ['image/jpeg', 'image/gif', 'image/png']
+    if (value) {
+      if (!IMAGES_MIMES.includes(value.type)) {
+        this.setError(key, this.customMessages?.[key]?.image || 'Veuillez choisir une image valide')
+      } else if (params < value.size) {
+        const megaBite = (params - 1000000) / 1000000
+        this.setError(key, this.customMessages?.[key]?.size || `Votre image est trop grande (max: ${megaBite} MB)`)
+      }
+    }
+  }
+
+  fileTypes(key, value, params) {
+    if (!value) return;
+    const VALID_MIMES = params
+    if (!VALID_MIMES.includes(value?.type?.toLowerCase())) {
+      this.setError(
+        key,
+        this.customMessages?.[key]?.fileTypes || `Invalid file type(${params.join(', ')})`
+      )
+    }
+  }
+
+  fileSize(key, value, params) {
+    if (!value || !value?.size) return;
+    if (params < value.size) {
+      const megaBite = (params - 1000000) / 1000000;
+      this.setError(
+        key,
+        this.customMessages?.[key]?.fileSize || `File too large (max: ${megaBite} MB)`
+      );
+    }
+  }
+
+  run() {
+    for (let key in this.validation) {
+      if (this.validation[key]) {
+        const value = this.getValue(key)
+        const [properties, params] = this.getProperties(this.validation[key])
+        properties.forEach(property => {
+          this[property](key, value, params?.[property])
+        });
+      }
+    }
+    // running custom validation
+    if (this.customValidations) {
+      for (let key in this.customValidations) {
+        if (this.customValidations[key].length > 0) {
+          this.customValidations[key].forEach(customValidation => {
+            if (!customValidation.isValid(this.data)) {
+              this.setError(key, this.customMessages[key][customValidation.validationName] || `Error message not specified`)
+            }
+          })
+        }
+      }
+    }
+  }
+
+  getErrors() {
+    this.run()
+    return this.errors
+  }
+
+  getProperties(value) {
+    switch (typeof (value)) {
+      case 'string':
+        return [value.split(','), null]
+
+      case 'object':
+        const properties = []
+        for (let key in value) {
+          properties.push(key)
+        }
+        return [properties, value]
+
+      default:
+        return [value, null]
+    }
+  }
+
+  getValue(key) {
+    return this.data[key]
+  }
+}
+```
+Cette classe comprend des validations couramment utilisées, mais après l'instanciation de la classe, vous avez la possibilité de définir des validations personnalisées.
+
+À l'intérieur de cette classe, la bibliothèque <a href="https://momentjs.com/">moment</a> est utilisée pour le traitement des dates. Veuillez vous assurer que cette bibliothèque est installée en utilisant la commande` npm install moment`.
+
+## useFormErrorsHandle
+
+Pour simplifier l'utilisation de cette classe, nous allons créer un autre hook, `useFormErrorsHandle`, qui nous aidera à valider les données dans un composant React.
+
+Créez un fichier `useFormErrorsHandle.js` dans le dossier hooks et insérez-y le code suivant :
+
+```js
+// src/hooks/useFormErrorsHandle.js
+import { useState } from "react"
+import Validation from "../class/Validation"
+
+/**
+ * le hook pour l'affichage des erreurs de formulaire en temps réel
+ * @param {Object} data les donnés à controler
+ * @param {Object} rules les règles pour les données
+ * @param {Object} customMessages les messages personnalisés pour les erreurs
+ * @returns {Object} un objet contenant les fonctions
+ */
+export const useFormErrorsHandle = (data, rules, customMessages, customValidation) => {
+     const [errors, setErrors] = useState({})
+
+     const validation = new Validation(data, rules, customMessages, customValidation)
+
+     const setError = (key, errors) => {
+          validation.setError(key, Array.isArray(errors) ? errors[0] : errors)
+          setErrors(err => ({ ...err, [key]: Array.isArray(errors) ? errors : [] }))
+     }
+
+     const checkFieldData = (e) => {
+          if (e) {
+               if (e.preventDefault) {
+                    e.preventDefault()
+               }
+          }
+          const name = e.target.name
+          const errors = validation.getError(name)
+          if (errors?.length !== 0) {
+               setError(name, errors)
+          }
+     }
+
+     const hasError = name => errors[name] && errors[name].length > 0 ? true : false
+
+     const getError = name => {
+          const first = errors[name] ? errors[name][0] : null
+          const second = validation.getError(name) ? validation.getError(name)[0] : null
+          if (first) return first
+          return second
+     }
+
+     const getErrors = () => validation.getErrors()
+
+     const isValidate = () => {
+          function areSubarraysEmpty(arr) {
+               for (let i = 0; i < arr.length; i++) {
+                    if (arr[i].length > 0) {
+                         return false; // If any subarray is not empty, return false
+                    }
+               }
+               return true; // If all subarrays are empty, return true
+          }
+          const isValid = areSubarraysEmpty(Object.values(errors))
+          validation.run()
+          return isValid && validation.isValidate()
+     }
+
+     const run = () => validation.run()
+
+     return {
+          errors, setErrors, setError, getError, hasError, checkFieldData, getErrors, isValidate, run
+     }
+}
+```
+
+Ce hook exporte un objet comportant les paramètres utilises a savoir :
+-	errors: Contient les erreurs retournes sur base des validations définies
+-	setErrors: Sert a préciser forcement les erreurs de plusieurs champs
+-	setError: Permet de préciser forcement l’erreur d’un seul champ
+-	getError: Permet de récupérer l’erreur d’un champ
+-	hasError: Permet de vérifier si le champ est valide ou non en se basant sur la validation précise pour ce champ
+-	checkFieldData: Permet de passer à la vérification d’un champ
+-	getErrors: Une fonction qui retourne toutes les erreurs en se basant sur les validations définies 
+-	isValidate: Permet de vérifier si les champs du formulaire sont valides ou non en se basant sur les validations précise pour ces champs
+
+
+Voici un exemple d'utilisation de `useFormErrorsHandle` avec le hook `useForm`:
+
+```js
+// App.js
+import { useForm } from './hooks/useForm';
+import { useFormErrorsHandle } from './hooks/useFormErrorsHandle';
+
+function MyForm() {
+     const [data, handleChange, setData, setValue] = useForm({
+          nom: "",
+          prenom: ""
+     })
+     const { hasError, getError, checkFieldData, isValidate } = useFormErrorsHandle(data, {
+          nom: {
+               required: true,
+               length: [1, 30]
+          },
+          prenom: {
+               required: true,
+               length: [1, 30]
+          }
+     }, {
+          nom: {
+               required: "Ce champ est obligatoire",
+               length: "Nom invalide (1 - 30 caracteres)"
+          },
+          prenom: {
+               required: "Ce champ est obligatoire",
+               length: "Nom invalide (1 - 30 caracteres)"
+          }
+     })
+
+     const handleSubmit = (e) => {
+          e.preventDefault()
+          if(isValidate()) {
+               alert("Formulaire soumis")
+          } else {
+               alert("Le formulaire presenes des erreurs. veuillez les corriger")
+          }
+     }
+
+     return (
+          <form onSubmit={handleSubmit}>
+               <div>
+                    <input
+                         placeholder='Nom'
+                         name='nom'
+                         value={data.nom}
+                         onChange={handleChange}
+                         onBlur={checkFieldData}
+                    />
+                    {hasError("nom") ? <div style={{ color: "red"}}>{ getError("nom") }</div> : null}
+               </div>
+               <div>
+                    <input
+                         placeholder='Prenom'
+                         name='prenom'
+                         value={data.prenom}
+                         onChange={handleChange}
+                         onBlur={checkFieldData}
+                    />
+                    {hasError("prenom") ? <div style={{ color: "red"}}>{ getError("prenom") }</div> : null}
+               </div>
+               <button>Envoyer</button>
+          </form>
+     )
+}
+const App = () => {
+
+     return (
+          <>
+               <MyForm />
+          </>
+     );
+};
+
+export default App
+```
+
+Le hook `useFormErrorsHandle` prend 4 paramètres à savoir:
+
+1. `data` : c'est un objet contenant les données à valider.
+2. `rules` : c'est un objet précisant les validations que vous spécifiez pour les données passées dans le premier paramètre. Les noms des clés doivent ressembler à celles qui doivent être définies dans l'objet des données à valider, et préciser la validation pour chaque clé.
+3. `customMessages` : Par défaut, les messages retournés sont en anglais, mais à l'aide de ce paramètre, vous pouvez changer les messages qui seront retournés pour chaque validation échouée.
+4. `customValidation`: Pour ajouter les validations personnalisées
+
+
+Voici une liste des validations par défaut et de leurs significations: 
+
+| Validation | Exemple | Description |
+| :-------: | :-------: | :----------------------------------------------------------: |
+| required  | target: { required: true } | Précisez que la clé et la valeur à l'intérieur sont obligatoires. |
+| length  | target: { length: [1, 2] } | Précisez la taille du champ |
+| match  | target: { match: "keyToMatch" } | Vérifier que deux valeurs sont identiques |
+| username  | target: { username: true } | Précisez qu'un champ doit avoir un nom d'utilisateur valide (lettres, chiffres, point ou underscore). |
+| email  | target: { email: true } | Précisez qu'un champ doit être un email valide |
+| image  | target: { image: 1000000 } | Précisez qu'un champ doit être une image valide. 1000000 indique la taille maximale de l'image |
+| fileTypes  | target: { fileTypes: ['application/pdf', 'image/jpeg'] } | Précisez qu'un champ doit être un fichier valide entre les types préciser dans le tableau |
+| fileSize  | target: { fileSize: 1000000 } | Précisez la taille maximale d'un fichier en octet |
+| alpha  | target: { exists: true } | Précisez que la valeur d'un champ doit contenir des caractères alphanumériques |
+| number  | target: { exists: true } | Précisez que la valeur d'un champ doit être un nombre valide |
+| date  | target: { date: "DD/MM/YYYY" } | Précisez que la valeur d'un champ doit être une date au format précisé |
+
+# AJAX and APIs
+
+> Le contenu de cette section suppose que vous avez suivi la formation sur l'utilisation de Node.js et Express.js pour la création d'une API, et que vous disposez d'une application déjà créée qui vous servira à tester les routes dans cette application React.
+
+En React, comme en JavaScript vanilla, vous avez la possibilité d'utiliser l'objet <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a> ou l'API Javascript <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">fetch</a> pour envoyer et récupérer des données d'un serveur de manière asynchrone, sans interférer avec l'affichage et le comportement de la page existante.
+
+Dans cette formation, nous utiliserons `fetch` et créerons une fonction utilitaire appelée fetchApi qui simplifiera l'accès à notre backend.
+
+## Envoi des données
+
+Prenons un exemple de création d'un utilisateur avec une route définie comme suit :
+
+- url: http://localhost:3000/utilisateurs
+- method: POST
+- body: NOM, PRENOM, EMAIL
+
+Le code pour envoyer ces données ressemble à ceci :
+
+```js
+// App.js
+import { useForm } from './hooks/useForm';
+import { useFormErrorsHandle } from './hooks/useFormErrorsHandle';
+
+function MyForm() {
+     const [data, handleChange, setData, setValue] = useForm({
+          nom: "",
+          prenom: "",
+          email: ""
+     })
+     const { hasError, getError, checkFieldData, isValidate } = useFormErrorsHandle(data, {
+          nom: {
+               required: true,
+               length: [1, 30]
+          },
+          prenom: {
+               required: true,
+               length: [1, 30]
+          },
+          email: {
+               email: true,
+               length: [1, 30]
+          }
+     }, {
+          nom: {
+               required: "Ce champ est obligatoire",
+               length: "Nom invalide (1 - 30 caracteres)"
+          },
+          prenom: {
+               required: "Ce champ est obligatoire",
+               length: "Prenom invalide (1 - 30 caracteres)"
+          },
+          email: {
+               required: "Ce champ est obligatoire",
+               length: "Email invalide (1 - 30 caracteres)"
+          }
+     })
+
+     const handleSubmit = async (e) => {
+          try {
+               e.preventDefault()
+               if(isValidate()) {
+                    const form = new FormData()
+                    form.append("NOM", data.nom)
+                    form.append("PRENOM", data.prenom)
+                    form.append("EMAIL", data.email)
+                    const res = await fetch("http://localhost:3000/utilisateurs", {
+                         method: "POST",
+                         body: form
+                    })
+                    const json = await res.json()
+                    alert("L'utilisateur a ete cree avec success")
+               } else {
+                    alert("Le formulaire presenes des erreurs. veuillez les corriger")
+               }
+          } catch (error) {
+               console.log(error)
+               alert("L'utilisateur n'a pas ete cree, reeassayer plus tard")
+          }
+     }
+
+     return (
+          <form onSubmit={handleSubmit}>
+               <div>
+                    <input
+                         placeholder='Nom'
+                         name='nom'
+                         value={data.nom}
+                         onChange={handleChange}
+                         onBlur={checkFieldData}
+                    />
+                    {hasError("nom") ? <div style={{ color: "red"}}>{ getError("nom") }</div> : null}
+               </div>
+               <div>
+                    <input
+                         placeholder='Prenom'
+                         name='prenom'
+                         value={data.prenom}
+                         onChange={handleChange}
+                         onBlur={checkFieldData}
+                    />
+                    {hasError("prenom") ? <div style={{ color: "red"}}>{ getError("prenom") }</div> : null}
+               </div>
+               <div>
+                    <input
+                         placeholder='Email'
+                         name='email'
+                         value={data.email}
+                         onChange={handleChange}
+                         onBlur={checkFieldData}
+                    />
+                    {hasError("email") ? <div style={{ color: "red"}}>{ getError("email") }</div> : null}
+               </div>
+               <button>Envoyer</button>
+          </form>
+     )
+}
+const App = () => {
+
+     return (
+          <>
+               <MyForm />
+          </>
+     );
+};
+
+export default App
+```
+
+## Récuperation des données
+
+Pour récupérer les données, il suffit d'appeler la route dans le hook `useEffect`, car nous voulons récupérer les données une seule fois lorsque le composant est monté.
+
+```js
+// App.js
+import { useEffect, useState } from 'react';
+import { useForm } from './hooks/useForm';
+import { useFormErrorsHandle } from './hooks/useFormErrorsHandle';
+
+function MyForm() {
+     const [data, handleChange, setData, setValue] = useForm({
+          nom: "",
+          prenom: "",
+          email: ""
+     })
+     const { hasError, getError, checkFieldData, isValidate } = useFormErrorsHandle(data, {
+          nom: {
+               required: true,
+               length: [1, 30]
+          },
+          prenom: {
+               required: true,
+               length: [1, 30]
+          },
+          email: {
+               email: true,
+               length: [1, 30]
+          }
+     }, {
+          nom: {
+               required: "Ce champ est obligatoire",
+               length: "Nom invalide (1 - 30 caracteres)"
+          },
+          prenom: {
+               required: "Ce champ est obligatoire",
+               length: "Prenom invalide (1 - 30 caracteres)"
+          },
+          email: {
+               required: "Ce champ est obligatoire",
+               length: "Email invalide (1 - 30 caracteres)"
+          }
+     })
+
+     const [utilisateurs, setUtilisateurs] = useState([])
+
+     const handleSubmit = async (e) => {
+          try {
+               e.preventDefault()
+               if(isValidate()) {
+                    const form = new FormData()
+                    form.append("NOM", data.nom)
+                    form.append("PRENOM", data.prenom)
+                    form.append("EMAIL", data.email)
+                    const res = await fetch("http://localhost:3000/utilisateurs", {
+                         method: "POST",
+                         body: form
+                    })
+                    const json = await res.json()
+                    fetchUtilisateurs()
+                    alert("L'utilisateur a ete cree avec success")
+               } else {
+                    alert("Le formulaire presenes des erreurs. veuillez les corriger")
+               }
+          } catch (error) {
+               console.log(error)
+               alert("L'utilisateur n'a pas ete cree, reeassayer plus tard")
+          }
+     }
+
+     const fetchUtilisateurs = async () => {
+          const res = await fetch("http://localhost:3000/utilisateurs", {
+               method: "GET"
+          })
+          const json = await res.json()
+          setUtilisateurs(json)
+     }
+
+     useEffect(() => {
+          fetchUtilisateurs()
+     }, [])
+
+     return (
+          <form onSubmit={handleSubmit}>
+               <h1>Nouveau utilisateur</h1>
+               <div>
+                    <input
+                         placeholder='Nom'
+                         name='nom'
+                         value={data.nom}
+                         onChange={handleChange}
+                         onBlur={checkFieldData}
+                    />
+                    {hasError("nom") ? <div style={{ color: "red"}}>{ getError("nom") }</div> : null}
+               </div>
+               <div>
+                    <input
+                         placeholder='Prenom'
+                         name='prenom'
+                         value={data.prenom}
+                         onChange={handleChange}
+                         onBlur={checkFieldData}
+                    />
+                    {hasError("prenom") ? <div style={{ color: "red"}}>{ getError("prenom") }</div> : null}
+               </div>
+               <div>
+                    <input
+                         placeholder='Email'
+                         name='email'
+                         value={data.email}
+                         onChange={handleChange}
+                         onBlur={checkFieldData}
+                    />
+                    {hasError("email") ? <div style={{ color: "red"}}>{ getError("email") }</div> : null}
+               </div>
+               <button>Envoyer</button>
+
+               <h1>Liste des utilisateurs</h1>
+               <ul>
+                    {utilisateurs.map((utilisateur, index) => {
+                         return (
+                              <li key={index}>{ utilisateur.NOM } {utilisateur.PRENOM}</li>
+                         )
+                    })}
+               </ul>
+          </form>
+     )
+}
+const App = () => {
+
+     return (
+          <>
+               <MyForm />
+          </>
+     );
+};
+
+export default App
+```
+
+# React router
+<a href="https://reactrouter.com/en/main">React router</a> est une bibliothèque de routage pour les applications React. Elle permet de créer des interfaces utilisateur à une seule page avec une navigation multipage sans recharger complètement la page
+
+## Installation
+
+Pour utiliser React Router, vous devez l'installer via npm:
+
+```
+npm install react-router-dom
+```
+
+Dans cette partie, nous allons construire une petite application riche en fonctionnalités qui vous permettra de comprendre l'utilisation de react router.
+
+Nous avons préparé du CSS afin que nous puissions nous concentrer sur React Router. N'hésitez pas à le critiquer sévèrement ou à écrire le vôtre (Nous avons fait des choses que nous ne ferions normalement pas en CSS pour que le balisage puisse rester aussi minimal que possible.)
+
+![Apercu du resultat de l'exercice](https://reactrouter.com/_docs/tutorial/15.webp)
+## Ajouter un Router
+
+La première chose à faire est de créer un <a href="https://reactrouter.com/en/main/routers/create-browser-router">Browser Router</a> et de configurer notre première route. Cela permettra le routage côté client pour notre application web.
+
+Le fichier `main.jsx` est le point d'entrée. Ouvrez-le et nous allons mettre en place React Router sur la page.
+
+Créez et rendez un Browser Router dans main.jsx:
+
+```js
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import {
+     createBrowserRouter,
+     RouterProvider,
+} from "react-router-dom";
+import "./index.css";
+
+const router = createBrowserRouter([
+     {
+          path: "/",
+          element: <div>Hello world!</div>,
+     },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+     <React.StrictMode>
+          <RouterProvider router={router} />
+     </React.StrictMode>
+);
+```
+
+Cette première route est souvent appelée la "route racine" car le reste de nos routes sera rendu à l'intérieur de celle-ci. Elle servira de mise en page racine de l'interface utilisateur, et nous aurons des mises en page imbriquées au fur et à mesure de notre avancement.
+
+
+Copiez/collez le CSS du tutoriel <a href="https://gist.githubusercontent.com/ryanflorence/ba20d473ef59e1965543fa013ae4163f/raw/499707f25a5690d490c7b3d54c65c65eb895930c/react-router-6.4-tutorial-css.css">trouvé ici</a> dans `src/index.css.`
+
+## La Route Racine
+
+Ajoutons la mise en page globale pour cette application.
+
+Créez un fichier `src/routes/RootPage.jsx`.
+
+```js
+// src/routes/RootPage.jsx
+export default function RootPage() {
+   return (
+      <>
+         <div id="sidebar">
+            <h1>Gestion des utilisateurs</h1>
+            <div>
+               <form id="search-form" role="search">
+                  <input
+                     id="q"
+                     aria-label="Search contacts"
+                     placeholder="Search"
+                     type="search"
+                     name="q"
+                  />
+                  <div
+                     id="search-spinner"
+                     aria-hidden
+                     hidden={true}
+                  />
+                  <div
+                     className="sr-only"
+                     aria-live="polite"
+                  ></div>
+               </form>
+               <form method="post">
+                  <button type="submit">Nouveau</button>
+               </form>
+            </div>
+            <nav>
+               <ul>
+                  <li>
+                     <a href={`/contacts/1`}>Votre nom</a>
+                  </li>
+                  <li>
+                     <a href={`/contacts/2`}>Les utilisateurs</a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+         <div id="detail"></div>
+      </>
+   )
+}
+```
+
+Rien de spécifique à React Router pour l'instant, donc n'hésitez pas à tout copier/coller.
+
+Définissez `<RootPage>` comme l'élément de la route racine:
+
+```js
+// main.jsx
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import {
+     createBrowserRouter,
+     RouterProvider,
+} from "react-router-dom";
+import "./index.css";
+import RootPage from "./routes/RootPage";
+
+const router = createBrowserRouter([
+     {
+          path: "/",
+          element: <RootPage />
+     },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+     <React.StrictMode>
+          <RouterProvider router={router} />
+     </React.StrictMode>
+);
+```
+
+L'application devrait maintenant ressembler à ceci:
+![Layout](https://reactrouter.com/_docs/tutorial/01.webp)
+
+## Page non trouvée
+
+Chaque fois que votre application lance une erreur lors du rendu, du chargement de données, ou de l'exécution de mutations de données, React Router la capturera et affichera une page d'erreur. 
+
+Créons notre propre page d'erreur.
+
+```js
+// src/components/ErrorPage.jsx
+import { useRouteError } from "react-router-dom";
+
+export default function ErrorPage() {
+  const error = useRouteError();
+  console.error(error);
+
+  return (
+    <div id="error-page">
+      <h1>Oops!</h1>
+      <p>Sorry, an unexpected error has occurred.</p>
+      <p>
+        <i>{error.statusText || error.message}</i>
+      </p>
+    </div>
+  );
+}
+```
+Définir `<ErrorPage>` comme l'élément d'erreur sur la route racine
+
+```js
+// main.jsx
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import {
+     createBrowserRouter,
+     RouterProvider,
+} from "react-router-dom";
+import "./index.css";
+import RootPage from "./routes/RootPage";
+import ErrorPage from "./components/ErrorPage";
+
+const router = createBrowserRouter([
+     {
+          path: "/",
+          element: <RootPage />,
+          errorElement: ErrorPage
+     },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+     <React.StrictMode>
+          <RouterProvider router={router} />
+     </React.StrictMode>
+);
+```
+
+La page d'erreur devrait maintenant ressembler à ceci :
+
+![Page d'erreur](https://reactrouter.com/_docs/tutorial/03.webp)
+
+## Naviguer vers une autre page
+
+Pour illustrer l'exemple de navigation vers une autre page, nous allons configurer le bouton "Nouveau" afin qu'il nous redirige vers une page de création d'un nouvel utilisateur.
+
+Créez un nouveau fichier qui abritera le formulaire :
+
+   ```js
+// src/routes/NouveauUtilisateurPage.jsx
+import { useEffect, useState } from 'react';
+import { useForm } from '../hooks/useForm';
+import { useFormErrorsHandle } from '../hooks/useFormErrorsHandle';
+
+function MyForm() {
+   const [data, handleChange, setData, setValue] = useForm({
+      nom: "",
+      prenom: "",
+      email: ""
+   })
+   const { hasError, getError, checkFieldData, isValidate } = useFormErrorsHandle(data, {
+      nom: {
+         required: true,
+         length: [1, 30]
+      },
+      prenom: {
+         required: true,
+         length: [1, 30]
+      },
+      email: {
+         email: true,
+         length: [1, 30]
+      }
+   }, {
+      nom: {
+         required: "Ce champ est obligatoire",
+         length: "Nom invalide (1 - 30 caracteres)"
+      },
+      prenom: {
+         required: "Ce champ est obligatoire",
+         length: "Prenom invalide (1 - 30 caracteres)"
+      },
+      email: {
+         required: "Ce champ est obligatoire",
+         length: "Email invalide (1 - 30 caracteres)"
+      }
+   })
+
+   const [utilisateurs, setUtilisateurs] = useState([])
+
+   const handleSubmit = async (e) => {
+      try {
+         e.preventDefault()
+         if (isValidate()) {
+            const form = new FormData()
+            form.append("NOM", data.nom)
+            form.append("PRENOM", data.prenom)
+            form.append("EMAIL", data.email)
+            const res = await fetch("http://localhost:3000/utilisateurs", {
+               method: "POST",
+               body: form
+            })
+            const json = await res.json()
+            fetchUtilisateurs()
+            alert("L'utilisateur a ete cree avec success")
+         } else {
+            alert("Le formulaire presenes des erreurs. veuillez les corriger")
+         }
+      } catch (error) {
+         console.log(error)
+         alert("L'utilisateur n'a pas ete cree, reeassayer plus tard")
+      }
+   }
+
+   const fetchUtilisateurs = async () => {
+      const res = await fetch("http://localhost:3000/utilisateurs", {
+         method: "GET"
+      })
+      const json = await res.json()
+      setUtilisateurs(json)
+   }
+
+   useEffect(() => {
+      fetchUtilisateurs()
+   }, [])
+
+   return (
+      <form onSubmit={handleSubmit}>
+         <h1>Nouveau utilisateur</h1>
+         <div>
+            <input
+               placeholder='Nom'
+               name='nom'
+               value={data.nom}
+               onChange={handleChange}
+               onBlur={checkFieldData}
+            />
+            {hasError("nom") ? <div style={{ color: "red" }}>{getError("nom")}</div> : null}
+         </div>
+         <div>
+            <input
+               placeholder='Prenom'
+               name='prenom'
+               value={data.prenom}
+               onChange={handleChange}
+               onBlur={checkFieldData}
+            />
+            {hasError("prenom") ? <div style={{ color: "red" }}>{getError("prenom")}</div> : null}
+         </div>
+         <div>
+            <input
+               placeholder='Email'
+               name='email'
+               value={data.email}
+               onChange={handleChange}
+               onBlur={checkFieldData}
+            />
+            {hasError("email") ? <div style={{ color: "red" }}>{getError("email")}</div> : null}
+         </div>
+         <button>Envoyer</button>
+
+         <h1>Liste des utilisateurs</h1>
+         <ul>
+            {utilisateurs.map((utilisateur, index) => {
+               return (
+                  <li key={index}>{utilisateur.NOM} {utilisateur.PRENOM}</li>
+               )
+            })}
+         </ul>
+      </form>
+   )
+}
+const NouveauUtilisateurPage = () => {
+
+   return (
+      <>
+         <MyForm />
+      </>
+   );
+};
+
+export default NouveauUtilisateurPage
+```
+
+Enregistrer la route dans `main.jsx`
+
+```js
+// main.jsx
+...
+import NouveauUtilisateurPage from "./routes/NouveauUtilisateurPage";
+
+const router = createBrowserRouter([
+     {
+          path: "/",
+          element: <RootPage />,
+          errorElement: <ErrorPage />
+     },
+     {
+          path: "/new_user",
+          element: <NouveauUtilisateurPage />,
+          errorElement: <ErrorPage />
+     },
+]);
+...
+```
+
+Dans `RootPage`, Importez le composant `Link` de react router
+```js
+import { Link } from "react-router-dom";
+```
+
+Et l'utiliser pour créer une navigation comme suit:
+
+```html
+<Link to="/new_user">Nouveau</Link>
+```
+
+Désormais, lors de votre clic sur le bouton "Nouveau", vous serez dirigé vers la nouvelle page de création d'un utilisateur.
+
+## Afficher les utilisateurs
+
+Dans la page racine `RootPage.jsx`, nous récupérerons la liste des utilisateurs et l'afficherons à l'aide d'une boucle.
+
+Pour cela, nous utiliserons la même approche que celle décrite dans le chapitre précédent :
+
+```js
+// src/routes/RootPage.jsx
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+export default function RootPage() {
+   const [utilisateurs, setUtilisateurs] = useState([])
+
+   const fetchUtilisateurs = async () => {
+        const res = await fetch("http://localhost:3000/utilisateurs", {
+             method: "GET"
+        })
+        const json = await res.json()
+        setUtilisateurs(json)
+   }
+
+   useEffect(() => {
+        fetchUtilisateurs()
+   }, [])
+   return (
+      <>
+         <div id="sidebar">
+            <h1>Gestion des utilisateurs</h1>
+            <div>
+               <form id="search-form" role="search">
+                  <input
+                     id="q"
+                     aria-label="Search contacts"
+                     placeholder="Search"
+                     type="search"
+                     name="q"
+                  />
+                  <div
+                     id="search-spinner"
+                     aria-hidden
+                     hidden={true}
+                  />
+                  <div
+                     className="sr-only"
+                     aria-live="polite"
+                  ></div>
+               </form>
+               <Link to="/new_user">Nouveau</Link>
+            </div>
+            <nav>
+               <ul>
+                  {utilisateurs.map((utilisateur, index) => {
+                     return (
+                        <li key={index}>
+                           <Link to={`/utilisateurs/${utilisateur.ID_UTILISATEUR}`}>{ utilisateur.NOM } { utilisateur.PRENOM }</Link>
+                        </li>
+                     )
+                  })}
+               </ul>
+            </nav>
+         </div>
+         <div id="detail"></div>
+      </>
+   )
+}
+```
+
+Maintenant, vous verrez une liste des utilisateurs provenant de la base de données. Dans la partie suivante, nous aborderons la manière d'afficher les détails de chaque utilisateur.
+
+## Paramètres d'URL
+
+Pour récupérer les détails de chaque utilisateur, créons une nouvelle page toujours dans le dossier routes nommée `DetailUtilisateurPage` et y insérons le code suivant :
+
+```js
+// src/routes/DetailUtilisateurPage.jsx
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+
+export default function DetailUtilisateurPage() {
+   const [utilisateur, setUtilisateur] = useState(null)
+   const params = useParams()
+   const id = params.id
+
+   const fetchUtilisateur = async () => {
+      const res = await fetch(`http://localhost:3000/utilisateurs/${id}`, {
+         method: "GET"
+      })
+      const json = await res.json()
+      setUtilisateur(json)
+   }
+
+   useEffect(() => {
+      fetchUtilisateur()
+   }, [])
+   return (
+      utilisateur ? <div id="contact">
+         <div>
+            <img
+               key={utilisateur.IMAGE}
+               src={
+                  utilisateur.IMAGE ||
+                  `https://robohash.org/${id}.png?size=200x200`
+               }
+            />
+         </div>
+
+         <div>
+            <h1>
+                     {utilisateur.NOM} {utilisateur.PRENOM}
+            </h1>
+
+            <div>
+                  <button type="submit">Edit</button>
+                  <button type="submit">Delete</button>
+            </div>
+         </div>
+      </div>
+         : <div>Chargement...</div>
+   )
+}
+```
+
+Pour pouvoir récupérer le paramètre qui a été passé en paramètre dans une URL, nous utilisons le hook `useParams` de React Router et nous devons définir le nom du paramètre lors de la création de la route dans `main.jsx`.
+
+```js
+// main.js
+...
+import DetailUtilisateurPage from "./routes/DetailUtilisateurPage";
+
+const router = createBrowserRouter([
+     {
+          path: "/",
+          element: <RootPage />,
+          errorElement: <ErrorPage />
+     },
+     {
+          path: "/new_user",
+          element: <NouveauUtilisateurPage />,
+          errorElement: <ErrorPage />
+     },
+     {
+          path: "/utilisateurs/:id",
+          element: <DetailUtilisateurPage />,
+          errorElement: <ErrorPage />
+     },
+]);
+...
+```
+
+# Primereact
+
+<a href="https://primereact.org/">PrimeReact</a> est une bibliothèque de composants UI (interface utilisateur) pour React, populaire pour la construction d'applications web. Il propose un ensemble riche et varié de composants réutilisables et hautement personnalisables, permettant de créer des interfaces utilisateur attrayantes et fonctionnelles avec moins de code et d'effort.
+
+Pour installer PrimeReact dans un projet React, veuillez consulter la documentation disponible <a href="https://primereact.org/installation/">ici</a>
+
+Pour illustrer l'utilisation de PrimeReact, nous avons mis à disposition un exemple où vous trouverez tous les composants importants ainsi qu'une base déjà établie pour créer une application complète.
+
+Veuillez trouver l'exemple sur GitHub <a href="https://github.com/mediabox-innovation-team/react-example-web">ici</a>
+
+
+# Conclusion
+Dans cette formation, nous avons appris à utiliser React pour créer une application de type SPA (Single Page Application). Nous avons abordé les bases de React ainsi que les bibliothèques utilitaires importantes qui facilitent la création d'une application React.
+
+Cette formation avait pour objectif de vous donner des directives et des bonnes pratiques pour créer une application React. Il est conseillé de continuer à faire des recherches pour approfondir vos connaissances sur chacune des technologies mentionnées dans ce manuel.
